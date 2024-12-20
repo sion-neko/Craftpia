@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4e52d63c61655824896e38d9df1fada9
+  m_SerializeEntries:
+  - m_GUID: 5bdba46397da9b941979b3dfbbdca549
+    m_Address: Assets/050image/food_curryruce.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d63a96ec2c23a6e45a729f23606a8d88
+    m_Address: Assets/050image/cooking_frypan.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55facc44315ea274f97077d28c2d87af
+    m_Address: Assets/050image/ishi_stone.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9eaa45a85a85ca84192dd1f266612c32
+    m_Address: Assets/050image/wood_maruta.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d596b9670b0506d48ae913aaa686b045
+    m_Address: Assets/050image/apple.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89be70e6fb6cfa341822ef96b84c65e9
+    m_Address: Assets/050image/herb.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be2ec0e2db9ae6a4bb8d7dc3450b8624
+    m_Address: Assets/050image/mushroom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21fc046de8d289f4ebbde1f060678b9f
+    m_Address: Assets/050image/wheat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97568801f8e0d294f86fb6096199a839
+    m_Address: Assets/050image/potato.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00eb920a6afd6024cac92433efb335ca
+    m_Address: Assets/050image/egg.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d53bbbf6a237e84db982f06233fc010
+    m_Address: Assets/050image/carrot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d84563f202f36654eac6751211bcb535
+    m_Address: Assets/050image/baguette.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3580dab970623f4e8a178e3ccd1ea81
+    m_Address: Assets/050image/tamagoyaki.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7ed88abf71e15cb4091234de9ef7c3c5
+    m_Address: Assets/050image/carbonara.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c7b8f2cf4998ad48a6562de1f3843a4
+    m_Address: Assets/050image/fire_mushroom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4d3687079c6378478323a6eb9d225d8
+    m_Address: Assets/050image/circle_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 96794b0bf1cdb6d488facde9212e58e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 81c3f91894e8fa94aacd192c446040fe, type: 2}
+    - {fileID: 11400000, guid: 7dd818da80582e248ac190fd1718fcc5, type: 2}

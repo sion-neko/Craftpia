@@ -1,0 +1,44 @@
+{
+  "gameItems": [
+    {
+        "imgFileName": "Assets/050image/food_curryruce.png",
+        "name": "カレー",
+        "description" : "拾うことで得られる",
+        "heal_amount":10,   
+        "sozai":[{"id":"#005","num":1},{"id":"#006","num":1},{"id":"#008","num":1}],
+        "id" : "#100"
+    },
+    {
+        "imgFileName": "Assets/050image/tamagoyaki.png",
+        "name": "たまご焼き",
+        "description" : "料理の初歩！",
+        "heal_amount":10,
+        "sozai":[{"id":"#007", "num":1}],
+        "id" : "#101"
+    },
+    {
+        "imgFileName": "Assets/050image/baguette.png",
+        "name": "パン",
+        "description" : "香ばしい。",
+        "heal_amount":10,
+        "sozai":[{"id":"#008", "num":3}],
+        "id" : "#102"
+    },
+    {
+        "imgFileName": "Assets/050image/fire_mushroom.png",
+        "name": "焼ききのこ",
+        "description" : "山の味",
+        "heal_amount":10,
+        "sozai":[{"id":"#003", "num":1}],
+        "id" : "#103"
+    },
+    {
+        "imgFileName": "Assets/050image/carbonara.png",
+        "name": "カルボナーラ",
+        "description" : "おしゃれ♪",
+        "heal_amount":10,
+        "sozai":[{"id":"#008", "num":2},{"id":"#007", "num":1}],
+        "id" : "#104"
+    }
+  ]
+}

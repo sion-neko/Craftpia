@@ -1,0 +1,65 @@
+{
+  "gameItems": [
+    {
+      "imgFileName": "Assets/050image/wood_maruta.png",
+      "name": "木材",
+      "description" : "木を切ることで得られる。",
+      "id" : "#000"
+      
+    },
+    {
+      "imgFileName": "Assets/050image/ishi_stone.png",
+      "name": "石",
+      "description" : "拾うことで得られる。ただの石。",
+      "id" : "#001"
+    },
+    {
+      "imgFileName": "Assets/050image/herb.png",
+      "name": "薬草",
+      "description" : "薬草。体力を回復する。10%で毒状態になる。",
+      "id" : "#002"
+    },
+    {
+      "imgFileName": "Assets/050image/mushroom.png",
+      "name": "キノコ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#003"
+    },
+    {
+      "imgFileName": "Assets/050image/apple.png",
+      "name": "リンゴ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#004"
+    },
+    {
+      "imgFileName": "Assets/050image/potato.png",
+      "name": "ジャガイモ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#005"
+    },
+    {
+      "imgFileName": "Assets/050image/carrot.png",
+      "name": "人参",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#006"
+    },
+    {
+      "imgFileName": "Assets/050image/egg.png",
+      "name": "たまご",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#007"
+    },
+    {
+      "imgFileName": "Assets/050image/wheat.png",
+      "name": "小麦",
+      "description" : "拾うことで得られる。生では食べれない。",
+      "id" : "#008"
+    }
+
+    
+    
+    
+
+  ]
+}
+  
