@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2222111361402594220}
   - component: {fileID: 6601886996393371248}
   - component: {fileID: 8513110858762447472}
+  - component: {fileID: 7970276916411130961}
   m_Layer: 0
   m_Name: Tree_01
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_GameObject: {fileID: 2222111361404534124}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -92,9 +93,9 @@ MeshCollider:
   m_GameObject: {fileID: 2222111361404534124}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6c7eaede4efc960409fb9ef2dfb77f29, type: 3}
 --- !u!114 &8513110858762447472
@@ -109,5 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4f9c771b1f38644bda12693b305d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactButton: {fileID: 0}
   itemId: '#000'
+  fieldObjectImage: {fileID: 0}
+--- !u!65 &7970276916411130961
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222111361404534124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.74, y: 5.561799, z: 1.01}
+  m_Center: {x: -0.06559682, y: 2.780911, z: 0.098100185}
