@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
@@ -10,7 +10,10 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] GameData gamedata;
     IManager _manager;
     [SerializeField] IPlayerMove playerMove;
-    
+    PlayerHP playerHP;
+    [SerializeField] Slider staminaSlider;
+
+    int maxStamina = 10000;
 
     // Ç–Ç∆Ç¬ëOÇÃwalkVectorÇï€ë∂Ç∑ÇÈÅB
     private bool beforeIsZero = false;
@@ -22,6 +25,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         _ono = new Ono(1, 1);
         _manager = new PlayerManager(gamedata);
         playerMove = GetComponent<Walk>();
+        playerHP = new PlayerHP(maxStamina);
+        staminaSlider.maxValue = maxStamina;
     }
     public void inItem(string id, int quantity = 1)
     {
@@ -39,6 +44,13 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         {
             playerMove.walk(walkVector);
             beforeIsZero = false;
+
+
+            // ï‡Ç≠ÇΩÇ—Ç…HPÇå∏ÇÁÇ∑ÅB
+            playerHP.ConsumeHP(1);
+            Debug.Log(playerHP.getHP());
+            staminaSlider.value = playerHP.getHP();
+
         }
         else
         {
@@ -57,7 +69,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     public void UseItem()
     {
-        
+
     }
 
 
