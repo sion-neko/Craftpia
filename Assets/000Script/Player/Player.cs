@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] IPlayerMove playerMove;
     PlayerHP playerHP;
     [SerializeField] Slider staminaSlider;
+    string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
     int maxStamina = 10000;
 
@@ -47,9 +49,20 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
 
             // ï‡Ç≠ÇΩÇ—Ç…HPÇå∏ÇÁÇ∑ÅB
-            playerHP.ConsumeHP(1);
-            Debug.Log(playerHP.getHP());
-            staminaSlider.value = playerHP.getHP();
+            if (playerHP.ConsumeHP(50))
+            {
+                staminaSlider.value = playerHP.getHP();
+            }
+            else
+            {
+                Debug.Log("ëÃóÕÇO");
+                SceneManager.LoadScene(GAME_OVER_SCENE_NAME);
+            }
+
+
+
+
+
 
         }
         else

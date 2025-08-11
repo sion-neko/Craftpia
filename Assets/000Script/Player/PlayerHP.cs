@@ -1,3 +1,5 @@
+using System;
+
 
 public class PlayerHP
 {
@@ -13,9 +15,19 @@ public class PlayerHP
         return playerHP;
     }
 
-    public void ConsumeHP(int amount)
+    public bool ConsumeHP(int amount)
     {
-        this.playerHP -= amount;
-    }
 
+        if (this.playerHP > amount)
+        {
+            this.playerHP -= amount;
+            return true;
+
+        }
+        else
+        {
+            this.playerHP = 0;
+            return false;
+        }
+    }
 }
