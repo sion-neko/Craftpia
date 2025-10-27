@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
 
 
+
+
     private void Start()
     {
         _ono = new Ono(1, 1);
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
 
             // ï‡Ç≠ÇΩÇ—Ç…HPÇå∏ÇÁÇ∑ÅB
-            if (playerHP.ConsumeHP(50))
+            if (playerHP.ConsumeHP(Config.CONSUME_HP_SPEED))
             {
                 staminaSlider.value = playerHP.getHP();
             }
