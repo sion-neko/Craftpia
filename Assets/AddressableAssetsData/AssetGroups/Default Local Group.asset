@@ -81,6 +81,10 @@ MonoBehaviour:
     m_Address: Assets/050image/circle_brown.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: cf1a3e1d71fd8794caba8c074618172a
+    m_Address: Assets/050image/house.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 96794b0bf1cdb6d488facde9212e58e7, type: 2}
   m_SchemaSet:

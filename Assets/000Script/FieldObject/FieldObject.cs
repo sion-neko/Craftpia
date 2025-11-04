@@ -12,6 +12,7 @@ public class FieldObject : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        
         //アイテム画像を取得
         if (!fieldObjectImage)
         {
@@ -27,6 +28,7 @@ public class FieldObject : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+
         if (other.tag == "Player")
         {
             FieldObjectPickupManager.instance.UpdateContactButton(gameObject, other.gameObject.GetComponent<Player>(), false);
@@ -36,9 +38,17 @@ public class FieldObject : MonoBehaviour
 
     public void pickUpItem(Player player)
     {
-        player.inItem(itemId);
-        FieldObjectPickupManager.instance.UpdateContactButton(gameObject, player, false);
-        Destroy(gameObject);
-
+        if (itemId == "#1000")
+        {
+            // TODO: LevelUP処理
+            // LevelUP画面を表示させる
+            Debug.Log("LevelUP処理");
+        }
+        else
+        {
+            player.inItem(itemId);
+            FieldObjectPickupManager.instance.UpdateContactButton(gameObject, player, false);
+            Destroy(gameObject);    
+        }
     }
 }

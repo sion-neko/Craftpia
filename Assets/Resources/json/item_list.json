@@ -54,12 +54,13 @@
       "name": "小麦",
       "description" : "拾うことで得られる。生では食べれない。",
       "id" : "#008"
+    },
+    {
+      "imgFileName": "Assets/050image/house.png",
+      "name": "家",
+      "description" : "お家。LevelUP場所。",
+      "id" : "#1000"
     }
-
-    
-    
-    
-
   ]
 }
   
