@@ -28,8 +28,9 @@ public class InputKey : MonoBehaviour
             .Subscribe(_ =>
             {
                 _key = SearchKey();
-                _isKeyDown.OnNext(_key);
                 Debug.Log(_key.ToString() + "‚ª‰Ÿ‚³‚ê‚Ü‚µ‚½B");
+                _isKeyDown.OnNext(_key);
+
 
             });
 
@@ -37,7 +38,7 @@ public class InputKey : MonoBehaviour
         this.UpdateAsObservable()
             .Where(_ => Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift))
             .Subscribe(_ => _isShiftKeyDown.Value = Input.GetKey(KeyCode.LeftShift));
-        
+
         //‰¡Ac“ü—Í
         this.UpdateAsObservable()
             .Subscribe(_ =>

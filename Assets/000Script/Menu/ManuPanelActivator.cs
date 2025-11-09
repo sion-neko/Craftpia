@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManuPanelActivator: MonoBehaviour, IManuPanelActivator
+public class ManuPanelActivator : MonoBehaviour, IManuPanelActivator
 {
     [SerializeField] Button _actionButton;
 
@@ -13,7 +13,9 @@ public class ManuPanelActivator: MonoBehaviour, IManuPanelActivator
 
     public void Contact()
     {
+        Debug.Log("コンタクト");
         _actionButton.onClick.Invoke();
+
     }
     public void OpenBag()
     {

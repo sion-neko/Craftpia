@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamedata: {fileID: 288270426}
-  staminaSlider: {fileID: 2105012912}
+  staminaSlider: {fileID: 0}
 --- !u!114 &28896486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3485,7 +3485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.024999581, y: 0.9745293, z: -0.14149264, w: 0.1721844}
+  m_LocalRotation: {x: 0.024999578, y: 0.9745293, z: -0.14149265, w: 0.17218436}
   m_LocalPosition: {x: 7.301984, y: 2.87, z: 12.528366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3879,7 +3879,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040824345}
-  m_LocalRotation: {x: 0.02499958, y: 0.9745293, z: -0.14149265, w: 0.17218438}
+  m_LocalRotation: {x: 0.024999578, y: 0.9745293, z: -0.14149265, w: 0.17218436}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5144,7 +5144,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397518286}
-  m_LocalRotation: {x: 0.028127389, y: 0.9717944, z: -0.15919542, w: 0.17170116}
+  m_LocalRotation: {x: 0.028127396, y: 0.9717944, z: -0.15919545, w: 0.1717012}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7054,8 +7054,8 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 400
-    m_AccelTime: 0.3
+    m_MaxSpeed: 600
+    m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
