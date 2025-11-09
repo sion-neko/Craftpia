@@ -9,10 +9,12 @@ public class FieldObject : MonoBehaviour
 
     public string itemId;
     public Sprite fieldObjectImage;
+    [SerializeField] GameObject _levelUpMenuPanel;
+    [SerializeField] MenuPanelManager _menuPanelManager;
 
     void OnTriggerEnter(Collider other)
     {
-        
+
         //アイテム画像を取得
         if (!fieldObjectImage)
         {
@@ -43,12 +45,14 @@ public class FieldObject : MonoBehaviour
             // TODO: LevelUP処理
             // LevelUP画面を表示させる
             Debug.Log("LevelUP処理");
+            _menuPanelManager.InstiateManuPanel(_levelUpMenuPanel);
+
         }
         else
         {
             player.inItem(itemId);
             FieldObjectPickupManager.instance.UpdateContactButton(gameObject, player, false);
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
 }
