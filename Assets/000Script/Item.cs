@@ -54,6 +54,7 @@ public class Sozai
 public class ItemDataArray
 {
     public Item[]  gameItems;
+    public CookItem[] gameCookItems;
 }
 public class EatItemDataArray
 {
@@ -90,13 +91,13 @@ public class JsonReaderFromResourcesFolder
     //    return items;
     //}
 
-    public CookItemDataArray GetRecipe()
-    {
-        string filePath = "json/recipe";
-        TextAsset file = Resources.Load(filePath) as TextAsset;
-        CookItemDataArray items = JsonUtility.FromJson<CookItemDataArray>(file.text);
-        return items;
-    }
+    // public CookItemDataArray GetRecipe()
+    // {
+    //     string filePath = "json/recipe";
+    //     TextAsset file = Resources.Load(filePath) as TextAsset;
+    //     CookItemDataArray items = JsonUtility.FromJson<CookItemDataArray>(file.text);
+    //     return items;
+    // }
 
 
 

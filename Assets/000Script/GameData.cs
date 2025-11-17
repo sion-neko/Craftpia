@@ -41,9 +41,10 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
 
         //jsonからデータの読み込み
         //レシピ　= [Item 木,Item 石]
-        itemDataArray = new JsonReaderFromResourcesFolder().GetItemDataArray().gameItems;
+        ItemDataArray item = new JsonReaderFromResourcesFolder().GetItemDataArray();
+        itemDataArray = item.gameItems;
         //レシピ　= [CookItem カレー,CookItem 肉じゃが]
-        cookItemDataArray = new JsonReaderFromResourcesFolder().GetRecipe().gameItems;
+        cookItemDataArray = item.gameCookItems;
 
         allItemDataArray = new ArrayList(itemDataArray);
         allItemDataArray.AddRange(cookItemDataArray);
