@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamedata: {fileID: 288270426}
-  staminaSlider: {fileID: 0}
+  staminaSlider: {fileID: 2105012912}
 --- !u!114 &28896486
 MonoBehaviour:
   m_ObjectHideFlags: 0
