@@ -35,11 +35,18 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
 
         //jsonからデータの読み込み
         GameDataJsonReceiver gameDataJsonReceiver = new JsonReaderFromResourcesFolder().getGameDataFromJson();
-        
+
         //itemDataArray = [Item 木,Item 石]
         Item[] itemDataArray = gameDataJsonReceiver.gameItems;
         //cookItemDataArray = [CookItem カレー,CookItem 肉じゃが]
         _cookItemDataArray = gameDataJsonReceiver.gameCookItems;
+        //playerLevelDataArray = [playerLevelData 1, ]
+        PlayerLevelData[] playerLevelDataArray = gameDataJsonReceiver.playerLevelData;
+
+        Debug.Log("level:  " + playerLevelDataArray[0].level);
+        Debug.Log("level1sozai: " + playerLevelDataArray[0].nextLevelRequaimets[0].id);
+        Debug.Log("level1HP: " + playerLevelDataArray[0].status.hp);
+
 
         // 全itemのリストを作成
         _allItemDataArray = new ArrayList(itemDataArray);
@@ -132,8 +139,9 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
 
 public class GameDataJsonReceiver
 {
-    public Item[]  gameItems;
+    public Item[] gameItems;
     public CookItem[] gameCookItems;
+    public PlayerLevelData[] playerLevelData;
 
     // public EatItem[] gameEatItems;
     // public CraftItem[] gameCraftItems;

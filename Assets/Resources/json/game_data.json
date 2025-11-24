@@ -104,6 +104,21 @@
         "sozai":[{"id":"#008", "num":2},{"id":"#007", "num":1}],
         "id" : "#104"
     }
+  ],
+
+  "playerLevelData":[
+    {
+        "level":1,
+        "status":{"hp":150, "speed":1},
+        "nextLevelRequaimets":[{"id":"#000", "num":2}]
+
+    },
+    {
+        "level":2,
+        "status":{"hp":200, "speed":1.1},
+        "nextLevelRequaimets":[{"id":"#000", "num":2}, {"id":"#001", "num":3}]
+        
+    }
   ]
 
 }
