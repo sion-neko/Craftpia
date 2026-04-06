@@ -17,6 +17,7 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
     Dictionary<string, CookItem> _cookItemName2item;
     Dictionary<string, Sprite> _id2ItemImage;
     Dictionary<string, Item> _id2AllItem;
+    Dictionary<int, PlayerLevelData> _level2Data;
 
     // Start is called before the first frame update
     async void Awake()
@@ -92,6 +93,11 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
             _id2ItemImage.Add(item.id, handle.Result);
 
         }
+
+        foreach (PlayerLevelData data in playerLevelDataArray)
+        {
+            _level2Data.Add(data.level, data);
+        }
     }
 
 
@@ -132,6 +138,11 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
     public Sprite getItemImage(string itemId)
     {
         return _id2ItemImage[itemId];
+    }
+
+    public PlayerLevelData getPlayerLevelData(int level)
+    {
+        return _level2Data[level];
     }
 
 

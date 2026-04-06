@@ -12,25 +12,25 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     IManager _manager;
     [SerializeField] IPlayerMove playerMove;
     PlayerHP playerHP;
+    int playerLevel;
     [SerializeField] Slider staminaSlider;
-    string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
-    int maxStamina = 10000;
+    
+    string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
     // Ç–Ç∆Ç¬ëOÇÃwalkVectorÇï€ë∂Ç∑ÇÈÅB
     private bool beforeIsZero = false;
-
-
-
-
 
     private void Start()
     {
         _ono = new Ono(1, 1);
         _manager = new PlayerManager(gamedata);
         playerMove = GetComponent<Walk>();
+        playerLevel = 1;
+        int maxStamina = GameData.instance.getPlayerLevelData(playerLevel).status.hp;
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
+        
     }
     public void inItem(string id, int quantity = 1)
     {
@@ -60,11 +60,6 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
                 Debug.Log("ëÃóÕÇO");
                 SceneManager.LoadScene(GAME_OVER_SCENE_NAME);
             }
-
-
-
-
-
 
         }
         else
