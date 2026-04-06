@@ -27,7 +27,9 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         _manager = new PlayerManager(gamedata);
         playerMove = GetComponent<Walk>();
         playerLevel = 1;
-        int maxStamina = GameData.instance.getPlayerLevelData(playerLevel).status.hp;
+        int maxStamina = 1000;
+            // TODO: ‰Šú‰»‚Å‚«‚é‚æ‚¤‚É‚·‚é(GameData‚ÌAwake‚Ìˆ—‚ªI‚í‚Á‚Ä‚¨‚ç‚¸“Ç‚İ‚ß‚È‚¢)
+            // GameData.instance.getPlayerLevelData(playerLevel).status.hp;
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
         

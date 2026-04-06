@@ -64,6 +64,8 @@ public class GameData : MonoBehaviour, ICookItemSozaiAcquisition
 
         _id2AllItem = new Dictionary<string, Item>();
 
+        _level2Data = new Dictionary<int, PlayerLevelData>();
+
         foreach (Item item in itemDataArray)
         {
             _id2Item.Add(item.id, item);
