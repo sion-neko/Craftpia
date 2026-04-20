@@ -45,5 +45,15 @@ public class PlayerManager : IManager
 
     public Dictionary<string, int> getBagSummary() { return _bag.getBagSummary(); }
 
-    public Dictionary<Item, int>Å@getUseItem() { return new Dictionary<Item, int> {}; }
+    public Dictionary<Item, int> getUseItem() { return new Dictionary<Item, int> {}; }
+
+    public bool exitSozai(Sozai sozai)
+    {
+        return _bag.biggerQuantity(sozai.id, sozai.num);
+    }
+
+    public void consumeSozai(Sozai sozai)
+    {
+        _bag.subItemQuantity(sozai.id, sozai.num);
+    }
 }

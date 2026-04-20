@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 872005740747213885}
   - component: {fileID: 5123582398508802475}
   m_Layer: 5
-  m_Name: "\u4F5C\u6210\u30DC\u30BF\u30F3"
+  m_Name: "\u30EC\u30D9\u30EB\u30A2\u30C3\u30D7\u30DC\u30BF\u30F3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5123582398508802475}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CookExeButton, Assembly-CSharp
-        m_MethodName: exeCook
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 5463849566911230382}
   - component: {fileID: 6781191014152549999}
   m_Layer: 5
-  m_Name: TitleText  (2)
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 3834773157370361756}
   - component: {fileID: 3551297962684235398}
   m_Layer: 5
-  m_Name: 'TitleText '
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 257578865718233962}
   - component: {fileID: 5296267898618856591}
   m_Layer: 5
-  m_Name: TitleText  (1)
+  m_Name: Detail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

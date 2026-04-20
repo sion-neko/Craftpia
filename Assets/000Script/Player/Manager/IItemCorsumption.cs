@@ -12,4 +12,6 @@ public interface IItemConsumption
 
     //ƒoƒbƒO‚ª‚¢‚Á‚Ï‚¢‚©‚Ç‚¤‚©
     bool isMaxBag();
+
+    bool biggerQuantity(string id, int quantity);
 }

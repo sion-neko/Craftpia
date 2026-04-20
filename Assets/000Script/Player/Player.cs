@@ -14,6 +14,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     PlayerHP playerHP;
     int playerLevel;
     [SerializeField] Slider staminaSlider;
+    int walkSpeed;
+
 
     
     string GAME_OVER_SCENE_NAME = "GameOverScenes";
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
             // GameData.instance.getPlayerLevelData(playerLevel).status.hp;
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
+        walkSpeed = 1;
+
         
     }
     public void inItem(string id, int quantity = 1)
@@ -44,11 +48,33 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         _manager.doCook(cookItem_id);
     }
 
+    public void PlayerLevelUp()
+    {
+        PlayerLevelData playerLevelData = GameData.instance.getPlayerLevelData(playerLevel);
+        foreach(Sozai sozai in playerLevelData.nextLevelRequaimets)
+        {
+            if(!_manager.exitSozai(sozai))
+            {
+                Debug.Log("‘fÞ‚ª‘«‚è‚Ü‚¹‚ñ");
+                return;
+            }
+        }
+        foreach(Sozai sozai in playerLevelData.nextLevelRequaimets)
+        {
+            _manager.consumeSozai(sozai);
+        }
+        playerLevel++;
+        playerHP.setHP(playerLevelData.status.hp);
+        staminaSlider.maxValue = playerHP.getHP();
+        staminaSlider.value = playerHP.getHP();
+        walkSpeed = playerLevelData.status.speed;
+    }
+
     public void Walk(Vector2 walkVector)
     {
         if (walkVector.magnitude > 0)
         {
-            playerMove.walk(walkVector);
+            playerMove.walk(walkVector*walkSpeed);
             beforeIsZero = false;
 
 
@@ -84,6 +110,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     }
 
+    
+    public int getPlayerLevel() { return playerLevel; }
 
     public int getPlayerOnoLv() { return _ono.getLv(); }
 

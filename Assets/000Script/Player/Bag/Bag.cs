@@ -5,7 +5,7 @@ public class Bag : IItemConsumption
 {
     static int MAX_CONTENTS_NUM = 10;
     Block[] _blockContents = new Block[MAX_CONTENTS_NUM];
-    //_summaryContents<id,æ•°>
+    //_summaryContents<id,”>
     Dictionary<String, int> _summaryContents = new Dictionary<String, int>();
     int BLOCK_MAX = 10;
 
@@ -13,34 +13,34 @@ public class Bag : IItemConsumption
     delegate List<Item> getContents();
 
 
-    //ãƒãƒƒã‚¯ã«å…¥ã‚Œã‚‰ã‚Œã‚‹ã‹ç¢ºèªã™ã‚‹é–¢æ•°ã®è¿½åŠ 
+    //ƒoƒbƒN‚É“ü‚ê‚ç‚ê‚é‚©Šm”F‚·‚éŠÖ”‚Ì’Ç‰Á
     bool canIn(string itemId)
     {
-        if (!isMaxBag())//bagãŒmaxã˜ã‚ƒãªã‹ã£ãŸã‚‰true
+        if (!isMaxBag())//bag‚ªmax‚¶‚á‚È‚©‚Á‚½‚çtrue
             return true;
 
-        return createInItemArgumentList().Contains(itemId); //bagã«å…¥ã‚Œã‚Œã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆã«å…¥ã£ã¦ã„ã‚Œã°trueã‚’è¿”ã™
+        return createInItemArgumentList().Contains(itemId); //bag‚É“ü‚ê‚ê‚éƒAƒCƒeƒ€ƒŠƒXƒg‚É“ü‚Á‚Ä‚¢‚ê‚Îtrue‚ğ•Ô‚·
     }
 
-    //æŒ‡å®šã—ãŸã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°ãŒãƒãƒƒã‚°ã®ä¸­èº«ã‚ˆã‚Šå¤šã‘ã‚Œã°trueã‚’è¿”ã™
-    bool biggerQuantity(string id, int quantity)
+    //w’è‚µ‚½ƒAƒCƒeƒ€‚ÌŒÂ”‚ªƒoƒbƒO‚Ì’†g‚æ‚è‘½‚¯‚ê‚Îtrue‚ğ•Ô‚·
+    public bool biggerQuantity(string id, int quantity)
     {
-        if (_summaryContents[id] >= quantity)
-        {
-            return true;
-        }
-        else
+        if (_summaryContents.ContainsKey(id) == false || _summaryContents[id] < quantity)
         {
             return false;
         }
+        else
+        {
+            return true;
+        }
     }
 
-    //ãƒãƒƒã‚°ã®ä¸­ã«ç‰©ã‚’å…¥ã‚Œã‚‹ï¼ˆã‚‚ã®ã‚’æ‹¾ã†ï¼‰
+    //ƒoƒbƒO‚Ì’†‚É•¨‚ğ“ü‚ê‚éi‚à‚Ì‚ğE‚¤j
     public void inItem(string itemId, int quantity)
     {
         if (!canIn(itemId))
         {
-            //å…¥ã‚Œãªã‹ã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹é–¢æ•°ã®ä½œæˆ
+            //“ü‚ê‚È‚©‚Á‚½‚çƒƒbƒZ[ƒW‚ğ“ü‚ê‚éŠÖ”‚Ìì¬
             return;
         }
 
@@ -61,13 +61,13 @@ public class Bag : IItemConsumption
         summaryToBlock();
     }
 
-    //ãƒãƒƒã‚°ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸›ã‚‰ã™
+    //ƒoƒbƒO‚ÌƒAƒCƒeƒ€‚ğŒ¸‚ç‚·
     public void subItemQuantity(string id, int quantity)
     {
 
         _summaryContents[id] -= quantity;
 
-        //ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°ãŒ0ã®ã¨ãã€ãã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒãƒƒã‚¯ã«è¡¨ç¤ºã•ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
+        //ƒAƒCƒeƒ€‚ÌŒÂ”‚ª0‚Ì‚Æ‚«A‚»‚ÌƒAƒCƒeƒ€‚ğƒoƒbƒN‚É•\¦‚³‚¹‚È‚¢‚æ‚¤‚É‚·‚é
         if (_summaryContents[id] == 0)
         {
             _summaryContents.Remove(id);
@@ -76,16 +76,16 @@ public class Bag : IItemConsumption
 
     public bool haveItem(string id)
     {
-        //ä¸­èº«ã‚’æã
+        //’†g‚ğ•`‚­
         return true;
     }
 
     public bool isMaxBag()
     {
-        if (_blockContents[MAX_CONTENTS_NUM - 1] == null) //bagãŒmaxã˜ã‚ƒãªã‘ã‚Œã°(_blockContentsã«æœ€å¾Œã¾ã§å…¥ã£ã¦ã„ãªã„)false
+        if (_blockContents[MAX_CONTENTS_NUM - 1] == null) //bag‚ªmax‚¶‚á‚È‚¯‚ê‚Î(_blockContents‚ÉÅŒã‚Ü‚Å“ü‚Á‚Ä‚¢‚È‚¢)false
             return false;
 
-        return true; //ãã†ã§ãªã‘ã‚Œã°true
+        return true; //‚»‚¤‚Å‚È‚¯‚ê‚Îtrue
     }
 
     public List<string> createInItemArgumentList()
@@ -103,10 +103,10 @@ public class Bag : IItemConsumption
     }
 
 
-    //ãƒ–ãƒ­ãƒƒã‚¯ï¼ˆãƒãƒƒã‚°ã®ä¸­èº«ã®å½¢ï¼‰ã«å¤‰æ›ã™ã‚‹
+    //ƒuƒƒbƒNiƒoƒbƒO‚Ì’†g‚ÌŒ`j‚É•ÏŠ·‚·‚é
     void summaryToBlock()
     {
-        Array.Clear(_blockContents, 0, _blockContents.Length); //é…åˆ—ã®åˆæœŸåŒ–
+        Array.Clear(_blockContents, 0, _blockContents.Length); //”z—ñ‚Ì‰Šú‰»
 
         int index = 0;
         foreach (KeyValuePair<String, int> it in _summaryContents)
@@ -118,7 +118,7 @@ public class Bag : IItemConsumption
                 index++;
             }
 
-            //ä½™ã‚ŠãŒå­˜åœ¨ã™ã‚‹ãªã‚‰ä½™ã‚Šã®åˆ†ã‚’è¿½åŠ ã§å…¥ã‚Œã‚‹
+            //—]‚è‚ª‘¶İ‚·‚é‚È‚ç—]‚è‚Ì•ª‚ğ’Ç‰Á‚Å“ü‚ê‚é
             if (it.Value % BLOCK_MAX != 0)
             {
                 _blockContents[index] = new Block(it.Key, it.Value % BLOCK_MAX);
@@ -146,7 +146,7 @@ public class Block
 {
     String _itemId;
     int _quantity;
-    static int BLOCK_MAX = 10;//ä¸€ãƒ–ãƒ­ãƒƒã‚¯ã®æœ€å¤§ã®å€¤
+    static int BLOCK_MAX = 10;//ˆêƒuƒƒbƒN‚ÌÅ‘å‚Ì’l
 
     public Block(String id, int num)
     {
