@@ -49,7 +49,7 @@ public class FieldObject : MonoBehaviour
             GameObject _panelInstance = _menuPanelManager.InstiateManuPanel(_levelUpMenuPanel);
             InitItemPanel(_panelInstance);
             DisplayItems(_panelInstance, player);
-            
+
 
         }
         else
@@ -76,6 +76,9 @@ public class FieldObject : MonoBehaviour
             panelImage.color = new Color(0, 0, 0, 0);
         }
 
+        Button levelUpButton = itemPanelParent.transform.Find("レベルアップボタン").gameObject.GetComponent<Button>();
+        levelUpButton.interactable = true;
+
     }
 
     public void DisplayItems(GameObject levelUpMenuePanel, Player player)
@@ -97,7 +100,7 @@ public class FieldObject : MonoBehaviour
         int idx = 0;
         foreach (Sozai sozai in nextLevelRequaimets)
         {
-            Debug.Log("書き込み中: "+ sozai.id + ":" + sozai.num);
+            Debug.Log("書き込み中: " + sozai.id + ":" + sozai.num);
             string itemId = sozai.id;
             int itemNum = sozai.num;
 
@@ -111,6 +114,17 @@ public class FieldObject : MonoBehaviour
 
         // LevelUpボタンにLevelUp関数を登録
         Button levelUpButton = itemPanelParent.transform.Find("レベルアップボタン").gameObject.GetComponent<Button>();
+        PlayerLevelData playerLevelData = GameData.instance.getPlayerLevelData(player.getPlayerLevel());
+        foreach (Sozai sozai in playerLevelData.nextLevelRequaimets)
+        {
+            if (!player.existSozai(sozai))
+            {
+                Debug.Log("素材が足りません");
+                levelUpButton.interactable = false;
+                return;
+            }
+
+        }
         levelUpButton.onClick.AddListener(player.PlayerLevelUp);
     }
 

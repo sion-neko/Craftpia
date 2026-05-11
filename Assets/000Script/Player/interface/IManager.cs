@@ -6,6 +6,6 @@ interface IManager
     void pickUpItem(string id, int quantity);
     Dictionary<string, int> getBagSummary();
     Dictionary<Item, int> getUseItem();
-    bool exitSozai(Sozai sozai);
+    bool existSozai(Sozai sozai);
     void consumeSozai(Sozai sozai);
 }

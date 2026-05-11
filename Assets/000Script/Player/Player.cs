@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     int walkSpeed;
 
 
-    
+
     string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
     // ひとつ前のwalkVectorを保存する。
@@ -30,13 +30,13 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         playerMove = GetComponent<Walk>();
         playerLevel = 1;
         int maxStamina = 1000;
-            // TODO: 初期化できるようにする(GameDataのAwakeの処理が終わっておらず読み込めない)
-            // GameData.instance.getPlayerLevelData(playerLevel).status.hp;
+        // TODO: 初期化できるようにする(GameDataのAwakeの処理が終わっておらず読み込めない)
+        // GameData.instance.getPlayerLevelData(playerLevel).status.hp;
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
         walkSpeed = 1;
 
-        
+
     }
     public void inItem(string id, int quantity = 1)
     {
@@ -51,15 +51,16 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     public void PlayerLevelUp()
     {
         PlayerLevelData playerLevelData = GameData.instance.getPlayerLevelData(playerLevel);
-        foreach(Sozai sozai in playerLevelData.nextLevelRequaimets)
+        foreach (Sozai sozai in playerLevelData.nextLevelRequaimets)
         {
-            if(!_manager.exitSozai(sozai))
+            if (!_manager.existSozai(sozai))
             {
                 Debug.Log("素材が足りません");
+
                 return;
             }
         }
-        foreach(Sozai sozai in playerLevelData.nextLevelRequaimets)
+        foreach (Sozai sozai in playerLevelData.nextLevelRequaimets)
         {
             _manager.consumeSozai(sozai);
         }
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     {
         if (walkVector.magnitude > 0)
         {
-            playerMove.walk(walkVector*walkSpeed);
+            playerMove.walk(walkVector * walkSpeed);
             beforeIsZero = false;
 
 
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     }
 
-    
+
     public int getPlayerLevel() { return playerLevel; }
 
     public int getPlayerOnoLv() { return _ono.getLv(); }
@@ -118,4 +119,5 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     public int getPlayerOnoAtk() { return _ono.getAtk(); }
 
     public Dictionary<string, int> getBagSummary() { return this._manager.getBagSummary(); }
+    public bool existSozai(Sozai sozai) { return this._manager.existSozai(sozai); }
 }
