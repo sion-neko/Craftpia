@@ -126,6 +126,9 @@ public class FieldObject : MonoBehaviour
 
         }
         levelUpButton.onClick.AddListener(player.PlayerLevelUp);
+        levelUpButton.onClick.AddListener(_menuPanelManager.ClosePanel);
+
+
     }
 
     private void DisplayOneItem(string itemId, int itemNum, GameObject itemPanel)
