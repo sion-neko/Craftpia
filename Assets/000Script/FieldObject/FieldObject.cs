@@ -125,7 +125,7 @@ public class FieldObject : MonoBehaviour
             }
 
         }
-        levelUpButton.onClick.AddListener(player.PlayerLevelUp);
+        levelUpButton.onClick.AddListener(() => StartCoroutine(player.PlayerLevelUp()));
         levelUpButton.onClick.AddListener(_menuPanelManager.ClosePanel);
 
 

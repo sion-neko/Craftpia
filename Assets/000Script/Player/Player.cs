@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     PlayerHP playerHP;
     int playerLevel;
     [SerializeField] Slider staminaSlider;
+    [SerializeField] GameObject playerLevelUpText;
+    [SerializeField] TextMeshProUGUI playerLevelText;
+
     int walkSpeed;
 
 
@@ -48,7 +52,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         _manager.doCook(cookItem_id);
     }
 
-    public void PlayerLevelUp()
+    public IEnumerator PlayerLevelUp()
     {
         PlayerLevelData playerLevelData = GameData.instance.getPlayerLevelData(playerLevel);
         foreach (Sozai sozai in playerLevelData.nextLevelRequaimets)
@@ -57,7 +61,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
             {
                 Debug.Log("ëfçﬁÇ™ë´ÇËÇ‹ÇπÇÒ");
 
-                return;
+                yield break;
             }
         }
         foreach (Sozai sozai in playerLevelData.nextLevelRequaimets)
@@ -69,6 +73,13 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         staminaSlider.maxValue = playerHP.getHP();
         staminaSlider.value = playerHP.getHP();
         walkSpeed = playerLevelData.status.speed;
+
+        //Text levelText = playerLevelUpText.transform.Find("LevelText").gameObject.GetComponent<TextMe
+        playerLevelText.text = (playerLevel-1) + " Å® " + playerLevel;
+        playerLevelUpText.SetActive(true);
+        yield return new WaitForSeconds(3);
+
+        playerLevelUpText.SetActive(false);
     }
 
     public void Walk(Vector2 walkVector)
