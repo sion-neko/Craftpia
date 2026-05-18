@@ -1,0 +1,125 @@
+{
+  "gameItems": [
+    {
+      "imgFileName": "Assets/050image/wood_maruta.png",
+      "name": "木材",
+      "description" : "木を切ることで得られる。",
+      "id" : "#000"
+      
+    },
+    {
+      "imgFileName": "Assets/050image/ishi_stone.png",
+      "name": "石",
+      "description" : "拾うことで得られる。ただの石。",
+      "id" : "#001"
+    },
+    {
+      "imgFileName": "Assets/050image/herb.png",
+      "name": "薬草",
+      "description" : "薬草。体力を回復する。10%で毒状態になる。",
+      "id" : "#002"
+    },
+    {
+      "imgFileName": "Assets/050image/mushroom.png",
+      "name": "キノコ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#003"
+    },
+    {
+      "imgFileName": "Assets/050image/apple.png",
+      "name": "リンゴ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#004"
+    },
+    {
+      "imgFileName": "Assets/050image/potato.png",
+      "name": "ジャガイモ",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#005"
+    },
+    {
+      "imgFileName": "Assets/050image/carrot.png",
+      "name": "人参",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#006"
+    },
+    {
+      "imgFileName": "Assets/050image/egg.png",
+      "name": "たまご",
+      "description" : "拾うことで得られる。食べれる。",
+      "id" : "#007"
+    },
+    {
+      "imgFileName": "Assets/050image/wheat.png",
+      "name": "小麦",
+      "description" : "拾うことで得られる。生では食べれない。",
+      "id" : "#008"
+    },
+    {
+      "imgFileName": "Assets/050image/house.png",
+      "name": "家",
+      "description" : "お家。LevelUP場所。",
+      "id" : "#1000"
+    }
+  ],
+
+  "gameCookItems": [
+    {
+        "imgFileName": "Assets/050image/food_curryruce.png",
+        "name": "カレー",
+        "description" : "拾うことで得られる",
+        "heal_amount":10,   
+        "sozai":[{"id":"#005","num":1},{"id":"#006","num":1},{"id":"#008","num":1}],
+        "id" : "#100"
+    },
+    {
+        "imgFileName": "Assets/050image/tamagoyaki.png",
+        "name": "たまご焼き",
+        "description" : "料理の初歩！",
+        "heal_amount":10,
+        "sozai":[{"id":"#007", "num":1}],
+        "id" : "#101"
+    },
+    {
+        "imgFileName": "Assets/050image/baguette.png",
+        "name": "パン",
+        "description" : "香ばしい。",
+        "heal_amount":10,
+        "sozai":[{"id":"#008", "num":3}],
+        "id" : "#102"
+    },
+    {
+        "imgFileName": "Assets/050image/fire_mushroom.png",
+        "name": "焼ききのこ",
+        "description" : "山の味",
+        "heal_amount":10,
+        "sozai":[{"id":"#003", "num":1}],
+        "id" : "#103"
+    },
+    {
+        "imgFileName": "Assets/050image/carbonara.png",
+        "name": "カルボナーラ",
+        "description" : "おしゃれ♪",
+        "heal_amount":10,
+        "sozai":[{"id":"#008", "num":2},{"id":"#007", "num":1}],
+        "id" : "#104"
+    }
+  ],
+
+  "playerLevelData":[
+    {
+        "level":1,
+        "status":{"hp":150, "speed":1},
+        "nextLevelRequaimets":[{"id":"#000", "num":2}]
+
+    },
+    {
+        "level":2,
+        "status":{"hp":200, "speed":1.1},
+        "nextLevelRequaimets":[{"id":"#000", "num":2}, {"id":"#001", "num":3}]
+        
+    }
+  ]
+
+}
+  

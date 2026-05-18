@@ -30,4 +30,9 @@ public class PlayerHP
             return false;
         }
     }
+
+    public void setHP(int hp)
+    {
+        this.playerHP = hp;
+    }
 }
