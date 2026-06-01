@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] Slider staminaSlider;
     [SerializeField] GameObject playerLevelUpText;
     [SerializeField] TextMeshProUGUI playerLevelText;
+    [SerializeField] GameObject gameOverMenu;
 
     int walkSpeed;
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
         walkSpeed = 1;
+        //Time.timeScale = 1;
 
 
     }
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         walkSpeed = playerLevelData.status.speed;
 
         //Text levelText = playerLevelUpText.transform.Find("LevelText").gameObject.GetComponent<TextMe
-        playerLevelText.text = (playerLevel-1) + " ¨ " + playerLevel;
+        playerLevelText.text = (playerLevel - 1) + " ¨ " + playerLevel;
         playerLevelUpText.SetActive(true);
         yield return new WaitForSeconds(3);
 
@@ -98,7 +100,12 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
             else
             {
                 Debug.Log("‘Ì—Í‚O");
-                SceneManager.LoadScene(GAME_OVER_SCENE_NAME);
+                if (!gameOverMenu.activeSelf)
+                {
+                    Time.timeScale = 0f;
+                    gameOverMenu.SetActive(true);
+                }
+
             }
 
         }
