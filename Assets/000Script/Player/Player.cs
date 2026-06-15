@@ -18,12 +18,15 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] GameObject playerLevelUpText;
     [SerializeField] TextMeshProUGUI playerLevelText;
     [SerializeField] GameObject gameOverMenu;
+    private Animator anim;
+
+    // ゲームオーバーメニュー表示
+    [SerializeField] CanvasGroup canvasGroup;
+    private float duration = 1f;
 
     int walkSpeed;
+    
 
-
-
-    string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
     // ひとつ前のwalkVectorを保存する。
     private bool beforeIsZero = false;
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         staminaSlider.maxValue = maxStamina;
         walkSpeed = 1;
         //Time.timeScale = 1;
+        anim = GetComponent<Animator>();
 
 
     }
@@ -88,13 +92,11 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     {
         if (walkVector.magnitude > 0)
         {
-            playerMove.walk(walkVector * walkSpeed);
-            beforeIsZero = false;
-
-
             // 歩くたびにHPを減らす。
             if (playerHP.ConsumeHP(Config.CONSUME_HP_SPEED))
             {
+                beforeIsZero = false;
+                playerMove.walk(walkVector * walkSpeed);
                 staminaSlider.value = playerHP.getHP();
             }
             else
@@ -102,8 +104,10 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
                 Debug.Log("体力０");
                 if (!gameOverMenu.activeSelf)
                 {
-                    Time.timeScale = 0f;
+                    anim.SetBool("death", true);
                     gameOverMenu.SetActive(true);
+                    StartCoroutine(FadeIn());
+                    // Time.timeScale = 0f;  // 動いているほうが楽しいのでいったん時間は止めないことにする。
                 }
 
             }
@@ -138,4 +142,28 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     public Dictionary<string, int> getBagSummary() { return this._manager.getBagSummary(); }
     public bool existSozai(Sozai sozai) { return this._manager.existSozai(sozai); }
+
+
+    
+
+    private void OnEnable()
+    {
+        
+    }
+
+    IEnumerator FadeIn()
+    {
+        canvasGroup.alpha = 0;
+
+        float time = 0;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            canvasGroup.alpha = time / duration;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1;
+    }
 }
