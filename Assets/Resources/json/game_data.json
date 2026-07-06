@@ -56,6 +56,12 @@
       "id" : "#008"
     },
     {
+      "imgFileName": "Assets/050image/coins.png",
+      "name": "コイン",
+      "description" : "集めるといいことがあるかも...",
+      "id" : "#500"
+    },
+    {
       "imgFileName": "Assets/050image/house.png",
       "name": "家",
       "description" : "お家。LevelUP場所。",
