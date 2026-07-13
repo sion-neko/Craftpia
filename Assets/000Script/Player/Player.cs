@@ -17,12 +17,15 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] Slider staminaSlider;
     [SerializeField] GameObject playerLevelUpText;
     [SerializeField] TextMeshProUGUI playerLevelText;
-    [SerializeField] GameObject gameOverMenu;
+    
+    
     private Animator anim;
 
+    // ゲームクリアメニュー表示
+    [SerializeField] GameObject gameClearMenu;
     // ゲームオーバーメニュー表示
-    [SerializeField] CanvasGroup canvasGroup;
-    private float duration = 1f;
+    [SerializeField] GameObject gameOverMenu;
+    
 
     int walkSpeed;
     
@@ -51,6 +54,18 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     public void inItem(string id, int quantity = 1)
     {
         _manager.pickUpItem(id, quantity);
+        // コインを拾ったらゲームクリア
+        if (id == "#500")
+        {
+            Debug.Log("ゲームクリア！");
+            if (!gameClearMenu.activeSelf)
+            {
+                anim.SetTrigger("clearTrigger");
+                gameClearMenu.SetActive(true);
+                StartCoroutine(FadeIn(gameClearMenu.GetComponent<CanvasGroup>()));
+                
+            }
+        }
     }
 
     public void Cook(string cookItem_id)
@@ -106,7 +121,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
                 {
                     anim.SetBool("death", true);
                     gameOverMenu.SetActive(true);
-                    StartCoroutine(FadeIn());
+                    StartCoroutine(FadeIn(gameOverMenu.GetComponent<CanvasGroup>()));
                     // Time.timeScale = 0f;  // 動いているほうが楽しいのでいったん時間は止めないことにする。
                 }
 
@@ -151,11 +166,12 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeIn(CanvasGroup canvasGroup)
     {
         canvasGroup.alpha = 0;
 
         float time = 0;
+        float duration = 1f;
 
         while (time < duration)
         {

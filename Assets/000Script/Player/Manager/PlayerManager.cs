@@ -41,6 +41,7 @@ public class PlayerManager : IManager
         //    return;
         //}
         _bag.inItem(item_id, quantity);
+
     }
 
     public Dictionary<string, int> getBagSummary() { return _bag.getBagSummary(); }
