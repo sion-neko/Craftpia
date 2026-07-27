@@ -17,18 +17,18 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] Slider staminaSlider;
     [SerializeField] GameObject playerLevelUpText;
     [SerializeField] TextMeshProUGUI playerLevelText;
-    
-    
+
+
     private Animator anim;
 
     // ゲームクリアメニュー表示
     [SerializeField] GameObject gameClearMenu;
     // ゲームオーバーメニュー表示
     [SerializeField] GameObject gameOverMenu;
-    
+
 
     int walkSpeed;
-    
+
 
 
     // ひとつ前のwalkVectorを保存する。
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
                 anim.SetTrigger("clearTrigger");
                 gameClearMenu.SetActive(true);
                 StartCoroutine(FadeIn(gameClearMenu.GetComponent<CanvasGroup>()));
-                
+
             }
         }
     }
@@ -159,11 +159,11 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     public bool existSozai(Sozai sozai) { return this._manager.existSozai(sozai); }
 
 
-    
+
 
     private void OnEnable()
     {
-        
+
     }
 
     IEnumerator FadeIn(CanvasGroup canvasGroup)
