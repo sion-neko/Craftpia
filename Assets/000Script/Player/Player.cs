@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     // ゲームクリアメニュー表示
     [SerializeField] GameObject gameClearMenu;
+    [SerializeField] Text clearCountdownText;
     // ゲームオーバーメニュー表示
     [SerializeField] GameObject gameOverMenu;
 
@@ -62,7 +63,14 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
             {
                 anim.SetTrigger("clearTrigger");
                 gameClearMenu.SetActive(true);
+
+                if (clearCountdownText != null)
+                {
+                    clearCountdownText.text = "10秒後にタイトルに戻ります";
+                }
+
                 StartCoroutine(FadeIn(gameClearMenu.GetComponent<CanvasGroup>()));
+                StartCoroutine(SceneTransitionAfterDelayRoutine("StartScenes"));
 
             }
         }
@@ -182,4 +190,27 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
         canvasGroup.alpha = 1;
     }
+
+    IEnumerator SceneTransitionAfterDelayRoutine(string sceneName)
+    {
+        float delay = 10f;
+        float elapsed = 0f;
+
+        while (elapsed < delay)
+        {
+            elapsed += Time.deltaTime;
+            float remaining = Mathf.Max(0f, delay - elapsed);
+            int remainingSeconds = Mathf.CeilToInt(remaining);
+
+            if (clearCountdownText != null)
+            {
+                clearCountdownText.text = remainingSeconds + "秒後にタイトルに戻ります";
+            }
+
+            yield return null;
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
 }
+
