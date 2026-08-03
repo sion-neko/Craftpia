@@ -8,8 +8,7 @@ public class Walk : MonoBehaviour, IPlayerMove
     CharacterController con;
     private Animator anim;
 
-    // ‰¼(walk‚ª‚Â‚×‚«‚Å‚Í‚È‚¢)
-    private int _walkSpeed;
+    private Player player;
 
 
     Vector3 moveDirection = Vector3.zero;
@@ -17,6 +16,7 @@ public class Walk : MonoBehaviour, IPlayerMove
     {
         anim = GetComponent<Animator>();
         con = GetComponent<CharacterController>();
+        player = GetComponent<Player>();
     }
 
     public void walk(Vector2 walkVector)
@@ -63,11 +63,20 @@ public class Walk : MonoBehaviour, IPlayerMove
         if (walkVector.magnitude > 0)
         {
             anim.SetBool("walking", true);
+            if (player.getPlayerLevel() >= Config.RUNNING_LEVEL)
+            {
+                anim.SetBool("running", true);
+            }
+            
             anim.speed = 1.7f;
 
         }
         else
         {
+            if (player.getPlayerLevel() >= Config.RUNNING_LEVEL) {
+                anim.SetBool("running", false);
+            }
+                
             anim.SetBool("walking", false);
             anim.speed = 1.0f;
         }

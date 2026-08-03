@@ -18,14 +18,23 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
     [SerializeField] GameObject playerLevelUpText;
     [SerializeField] TextMeshProUGUI playerLevelText;
 
+
+    private Animator anim;
+
+    // ゲームクリアメニュー表示
+    [SerializeField] GameObject gameClearMenu;
+    [SerializeField] Text clearCountdownText;
+    // ゲームオーバーメニュー表示
+    [SerializeField] GameObject gameOverMenu;
+
+
     int walkSpeed;
-
-
-
-    string GAME_OVER_SCENE_NAME = "GameOverScenes";
 
     // ひとつ前のwalkVectorを保存する。
     private bool beforeIsZero = false;
+
+    // clear演出などの特定アニメーション中に移動入力をブロックするフラグ
+    private bool isMovementLocked = false;
 
     private void Start()
     {
@@ -39,12 +48,35 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         playerHP = new PlayerHP(maxStamina);
         staminaSlider.maxValue = maxStamina;
         walkSpeed = 1;
+        //Time.timeScale = 1;
+        anim = GetComponent<Animator>();
 
 
     }
     public void inItem(string id, int quantity = 1)
     {
         _manager.pickUpItem(id, quantity);
+        // コインを拾ったらゲームクリア
+        if (id == "#500")
+        {
+            Debug.Log("ゲームクリア！");
+            if (!gameClearMenu.activeSelf)
+            {
+                anim.SetTrigger("clearTrigger");
+                isMovementLocked = true;
+                playerMove.walk(Vector2.zero);
+                gameClearMenu.SetActive(true);
+
+                if (clearCountdownText != null)
+                {
+                    clearCountdownText.text = "10秒後にタイトルに戻ります";
+                }
+
+                StartCoroutine(FadeIn(gameClearMenu.GetComponent<CanvasGroup>()));
+                StartCoroutine(SceneTransitionAfterDelayRoutine("StartScenes"));
+
+            }
+        }
     }
 
     public void Cook(string cookItem_id)
@@ -75,7 +107,7 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
         walkSpeed = playerLevelData.status.speed;
 
         //Text levelText = playerLevelUpText.transform.Find("LevelText").gameObject.GetComponent<TextMe
-        playerLevelText.text = (playerLevel-1) + " → " + playerLevel;
+        playerLevelText.text = (playerLevel - 1) + " → " + playerLevel;
         playerLevelUpText.SetActive(true);
         yield return new WaitForSeconds(3);
 
@@ -84,21 +116,32 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     public void Walk(Vector2 walkVector)
     {
+        // clear演出中などはWASD移動入力を無視する
+        if (isMovementLocked)
+        {
+            return;
+        }
+
         if (walkVector.magnitude > 0)
         {
-            playerMove.walk(walkVector * walkSpeed);
-            beforeIsZero = false;
-
-
             // 歩くたびにHPを減らす。
             if (playerHP.ConsumeHP(Config.CONSUME_HP_SPEED))
             {
+                beforeIsZero = false;
+                playerMove.walk(walkVector * walkSpeed);
                 staminaSlider.value = playerHP.getHP();
             }
             else
             {
                 Debug.Log("体力０");
-                SceneManager.LoadScene(GAME_OVER_SCENE_NAME);
+                if (!gameOverMenu.activeSelf)
+                {
+                    anim.SetBool("death", true);
+                    gameOverMenu.SetActive(true);
+                    StartCoroutine(FadeIn(gameOverMenu.GetComponent<CanvasGroup>()));
+                    // Time.timeScale = 0f;  // 動いているほうが楽しいのでいったん時間は止めないことにする。
+                }
+
             }
 
         }
@@ -131,4 +174,55 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     public Dictionary<string, int> getBagSummary() { return this._manager.getBagSummary(); }
     public bool existSozai(Sozai sozai) { return this._manager.existSozai(sozai); }
+
+
+
+
+    private void OnEnable()
+    {
+
+    }
+
+    IEnumerator FadeIn(CanvasGroup canvasGroup)
+    {
+        canvasGroup.alpha = 0;
+
+        float time = 0;
+        float duration = 1f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            canvasGroup.alpha = time / duration;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1;
+    }
+
+    IEnumerator SceneTransitionAfterDelayRoutine(string sceneName)
+    {
+        float delay = 10f;
+        float elapsed = 0f;
+
+        while (elapsed < delay)
+        {
+            elapsed += Time.deltaTime;
+            float remaining = Mathf.Max(0f, delay - elapsed);
+            int remainingSeconds = Mathf.CeilToInt(remaining);
+
+            if (clearCountdownText != null)
+            {
+                clearCountdownText.text = remainingSeconds + "秒後にタイトルに戻ります";
+            }
+
+            if(remainingSeconds < delay - 2){
+                isMovementLocked = false;
+            }
+
+            yield return null;
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
 }
