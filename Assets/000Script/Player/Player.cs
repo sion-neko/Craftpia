@@ -30,10 +30,11 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     int walkSpeed;
 
-
-
     // ひとつ前のwalkVectorを保存する。
     private bool beforeIsZero = false;
+
+    // clear演出などの特定アニメーション中に移動入力をブロックするフラグ
+    private bool isMovementLocked = false;
 
     private void Start()
     {
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
             if (!gameClearMenu.activeSelf)
             {
                 anim.SetTrigger("clearTrigger");
+                isMovementLocked = true;
+                playerMove.walk(Vector2.zero);
                 gameClearMenu.SetActive(true);
 
                 if (clearCountdownText != null)
@@ -113,6 +116,12 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
 
     public void Walk(Vector2 walkVector)
     {
+        // clear演出中などはWASD移動入力を無視する
+        if (isMovementLocked)
+        {
+            return;
+        }
+
         if (walkVector.magnitude > 0)
         {
             // 歩くたびにHPを減らす。
@@ -207,10 +216,13 @@ public class Player : MonoBehaviour, IPlayerAction, IPlayerBagController
                 clearCountdownText.text = remainingSeconds + "秒後にタイトルに戻ります";
             }
 
+            if(remainingSeconds < delay - 2){
+                isMovementLocked = false;
+            }
+
             yield return null;
         }
 
         SceneManager.LoadScene(sceneName);
     }
 }
-
